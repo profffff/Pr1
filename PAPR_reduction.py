@@ -2,7 +2,8 @@ import numpy as np
 from ft_transform import ft_transform
 # from SINC_2D import SINC_2D
 from SINC_paper import sinc_paper
-
+from SINC_paper_updated import sinc_paper_updated
+from SINC_paper_parallel import sinc_paper_parallel
 
 def PAPR_reduction(X, Fa, scenario, ML_coef):
     max_evm = scenario['max_evm']
@@ -27,7 +28,12 @@ def PAPR_reduction(X, Fa, scenario, ML_coef):
     #     dX_t = SINC_2D(X_t, Fa, Nsc, threshold, max_evm, Nfft, scenario)
     elif algo == 3:
         dX_t = sinc_paper(X_t, Fa, Nsc, threshold, max_evm, Nfft, scenario)  # SINC_paper
-    
+    elif algo == 4:
+        dX_t = sinc_paper_updated(X_t, Fa, Nsc, threshold, max_evm, Nfft, scenario)  # SINC_paper
+    elif algo == 5:
+        dX_t = sinc_paper_parallel(X_t, Fa, Nsc, threshold, max_evm, Nfft, scenario)  # SINC_paper
+
+
     dX = ft_transform(dX_t, "t2f", scenario)
     
     Xm = np.zeros((Nsym, Nsc, Ntx), dtype=complex)  # Ensure Xm is complex

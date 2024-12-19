@@ -4,6 +4,7 @@ from ft_transform import ft_transform
 from SINC_paper import sinc_paper
 from SINC_paper_updated import sinc_paper_updated
 from SINC_paper_parallel import sinc_paper_parallel
+from SINC_paper_test import sinc_paper_test
 
 def PAPR_reduction(X, Fa, scenario, ML_coef):
     max_evm = scenario['max_evm']
@@ -31,7 +32,7 @@ def PAPR_reduction(X, Fa, scenario, ML_coef):
     elif algo == 4:
         dX_t = sinc_paper_updated(X_t, Fa, Nsc, threshold, max_evm, Nfft, scenario)  # SINC_paper
     elif algo == 5:
-        dX_t = sinc_paper_parallel(X_t, Fa, Nsc, threshold, max_evm, Nfft, scenario)  # SINC_paper
+        dX_t = sinc_paper_test(X_t, Fa, Nsc, threshold, max_evm, Nfft, scenario)  # SINC_paper
 
 
     dX = ft_transform(dX_t, "t2f", scenario)
